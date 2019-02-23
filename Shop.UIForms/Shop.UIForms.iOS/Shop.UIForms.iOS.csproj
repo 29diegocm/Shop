@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B951A5D8-E068-4608-8D6A-11C46C565816}</ProjectGuid>
+    <ProjectGuid>{3EDBC5A9-F017-4B1F-8969-2EBE7919B849}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
     <OutputType>Exe</OutputType>
@@ -128,7 +128,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Shop.UIForms\Shop.UIForms.csproj">
-      <Project>{722E043B-1CAF-439E-9CA2-5CCD6503210F}</Project>
+      <Project>{6518BFE8-F5B0-4308-940D-F12DC16AE106}</Project>
       <Name>Shop.UIForms</Name>
     </ProjectReference>
   </ItemGroup>
