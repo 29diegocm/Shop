@@ -13,7 +13,7 @@ namespace Shop.Web.Controllers
     using Microsoft.EntityFrameworkCore;
     using Shop.Web.Models;
 
-    [Authorize]
+    
     public class ProductsController : Controller
     {
         private readonly IProductRepository productRepository;
@@ -26,13 +26,13 @@ namespace Shop.Web.Controllers
             this.userHelper = userHelper;
         }
 
-        // GET: Products
+        
         public IActionResult Index()
         {
             return View(this.productRepository.GetAll().OrderBy(p => p.Name));
         }
 
-        // GET: Products/Details/5
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,13 +49,15 @@ namespace Shop.Web.Controllers
             return View(product);
         }
 
-        // GET: Products/Create
+        
+
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Products/Create
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductViewModel view)
@@ -111,7 +113,7 @@ namespace Shop.Web.Controllers
             };
         }
 
-        // GET: Products/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -147,7 +149,7 @@ namespace Shop.Web.Controllers
 
             }
 
-        // POST: Products/Edit/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProductViewModel view)
@@ -198,7 +200,7 @@ namespace Shop.Web.Controllers
             return View(view);
         }
 
-        // GET: Products/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -215,7 +217,7 @@ namespace Shop.Web.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
