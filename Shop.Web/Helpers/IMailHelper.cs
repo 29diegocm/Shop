@@ -1,0 +1,15 @@
+﻿using Microsoft.AspNetCore.Identity;
+using Shop.Web.Data.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Shop.Web.Helpers
+{
+    public interface IMailHelper
+    {
+        void SendMail(string to, string subject, string body);
+    }
+
+}

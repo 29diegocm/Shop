@@ -1,6 +1,7 @@
 ﻿namespace Shop.Web.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Entities;
@@ -28,6 +29,28 @@
             await this.userHelper.CheckRoleAsync("Admin");
             await this.userHelper.CheckRoleAsync("Customer");
 
+            if (!this.context.Countries.Any())
+            {
+                var cities = new List<City>();
+                cities.Add(new City { Name = "Medellín" });
+                cities.Add(new City { Name = "Bogotá" });
+                cities.Add(new City { Name = "Barranquilla" });
+                cities.Add(new City { Name = "Cartagena" });
+                cities.Add(new City { Name = "Ibague" });
+                cities.Add(new City { Name = "Santa Marta" });
+                cities.Add(new City { Name = "Cali" });
+                cities.Add(new City { Name = "Popayan" });
+
+
+                this.context.Countries.Add(new Country
+                {
+                    Cities = cities,
+                    Name = "Colombia"
+                });
+
+                await this.context.SaveChangesAsync();
+            }
+
 
             var user = await this.userHelper.GetUserByEmailAsync("diegocardonam1998@gmail.com");
             if (user == null)
@@ -38,7 +61,11 @@
                     LastName = "Cardona",
                     Email = "diegocardonam1998@gmail.com",
                     UserName = "diegocardonam1998@gmail.com",
-                    PhoneNumber = "3217148396"
+                    PhoneNumber = "3217148396",
+                    Address = "Avenida siempre viva",
+                    CityId = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault().Id,
+                    City = this.context.Countries.FirstOrDefault().Cities.FirstOrDefault()
+
                 };
 
                 var result = await this.userHelper.AddUserAsync(user, "123456");
@@ -47,6 +74,9 @@
                     throw new InvalidOperationException("Could not create the user in seeder");
                 }
                 await this.userHelper.AddUserToRoleAsync(user, "Admin");
+                var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
+                await this.userHelper.ConfirmEmailAsync(user, token);
+
             }
 
             var isInRole = await this.userHelper.IsUserInRoleAsync(user, "Admin");

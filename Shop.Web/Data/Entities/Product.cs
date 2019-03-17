@@ -21,10 +21,10 @@ namespace Shop.Web.Data.Entities
 
         
         [Display(Name = "Last Purchase")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/mm/dd}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:mm/ddyyyy}", ApplyFormatInEditMode = false)]
         public DateTime? LastPurchase { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy/mm/dd}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:mm/dd/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime? LastSale { get; set; }
 
         [Display(Name = "Is Availabe?")]
