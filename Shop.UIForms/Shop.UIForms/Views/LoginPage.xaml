@@ -25,9 +25,13 @@ encoding="utf-8" ?>
                     IsPassword="True"
                     Placeholder="Enter your Password"
                     Text="{Binding Password}">
-                    </Entry>
+                </Entry>
+                <ActivityIndicator
+                	IsRunning="{Binding IsRunning}">
+                </ActivityIndicator>
                 <Button
                     Command="{Binding LoginCommand}"
+                    IsEnabled="{Binding IsEnabled}"
                     Text="Login ">
                 </Button>
             </StackLayout>
